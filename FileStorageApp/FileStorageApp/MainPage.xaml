@@ -6,19 +6,22 @@
              mc:Ignorable="d"
              x:Class="FileStorageApp.MainPage">
 
-    <StackLayout Orientation="Horizontal">
-      <StackLayout Orientation="Vertical">
-      <!-- Place new controls here -->
-        <Button x:Name="DebugButton"
-                Text="Debug Button"
-                Clicked="DebugButton_OnClicked"/>
+  <StackLayout Orientation="Horizontal">
+    <StackLayout Orientation="Vertical">
+      <Button x:Name="GetPathsButton"
+              Text="Get Paths"
+              Clicked="GetPathsButton_OnClicked" />
+      <Button x:Name="CheckPermissionButton"
+              Text="Check Permission"
+              Clicked="CheckPermission_OnClicked" />
+
       <Button x:Name="TakePhotoButton"
               Text="Take Photo"
-              Clicked="TakePhotoButton_OnClicked"/>
+              Clicked="TakePhotoButton_OnClicked" />
       <Button x:Name="PickPhotoButton"
-                Text="Pick Photo"
-                Clicked="PickPhotoButton_OnClicked"/>
+              Text="Pick Photo"
+              Clicked="PickPhotoButton_OnClicked" />
     </StackLayout>
-    </StackLayout>
+  </StackLayout>
 
 </ContentPage>

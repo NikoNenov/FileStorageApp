@@ -25,11 +25,24 @@ namespace FileStorageApp
       InitializeComponent();
     }
 
-    private async void DebugButton_OnClicked(object sender, EventArgs e)
+    /// <summary>
+    /// Get android movie and picture path
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void GetPathsButton_OnClicked(object sender, EventArgs e)
     {
       Debug.WriteLine($"GetPathMovies: {DependencyService.Get<IFileService>().GetPathMovies()}");
       Debug.WriteLine($"GetPathPictures: {DependencyService.Get<IFileService>().GetPathPictures()}");
+    }
 
+    /// <summary>
+    /// Check permissions event
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void CheckPermission_OnClicked(object sender, EventArgs e)
+    {
       Debug.WriteLine($"CheckPermission<StoragePermission>: {await CheckPermission<StoragePermission>(Permission.Storage)}");
       Debug.WriteLine($"CheckPermission<PhotosPermission>: {await CheckPermission<PhotosPermission>(Permission.Photos)}");
     }
@@ -40,23 +53,25 @@ namespace FileStorageApp
       {
         SaveToAlbum = true
       });
-
       Debug.WriteLine($"TakePhoto -> AlbumPath: {file?.AlbumPath}");
       Debug.WriteLine($"TakePhoto -> Path: {file?.Path}");
     }
+
+    /// <summary>
+    /// Pick and save photo 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void PickPhotoButton_OnClicked(object sender, EventArgs e)
     {
       var file = await CrossMedia.Current.PickPhotoAsync();
-
       Debug.WriteLine($"PickPhoto -> AlbumPath: {file?.AlbumPath}");
       Debug.WriteLine($"PickPhoto -> Path: {file?.Path}");
 
-
-      /*
-      [0:] PickPhoto -> AlbumPath: content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F27809/ORIGINAL/NONE/image%2Fjpeg/1899413141
-      [0:] PickPhoto -> Path: /storage/emulated/0/Android/data/com.companyname.filestorageapp/files/Pictures/temp/DSC_0010_1.JPG
-      */
-      DependencyService.Get<IFileService>().SaveFile(ToByteArray(file), "/storage/emulated/0/Pictures/Niko_01.JPG");
+      if(file != null)
+      {
+        DependencyService.Get<IFileService>().SaveFile(ToByteArray(file), DependencyService.Get<IFileService>().GetPathPictures());
+      }
     }
 
 
@@ -106,5 +121,7 @@ namespace FileStorageApp
       Debug.WriteLine($"T: {typeof(T)} Permission status: {status}");
       return status == PermissionStatus.Granted;
     }
+
+
   }
 }
