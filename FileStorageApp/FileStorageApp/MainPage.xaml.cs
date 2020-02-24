@@ -62,7 +62,7 @@ namespace FileStorageApp
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private async void PickPhotoButton_OnClicked(object sender, EventArgs e)
+    private async void PickAndSavePhotoButton_OnClicked(object sender, EventArgs e)
     {
       var file = await CrossMedia.Current.PickPhotoAsync();
       Debug.WriteLine($"PickPhoto -> AlbumPath: {file?.AlbumPath}");
@@ -72,6 +72,16 @@ namespace FileStorageApp
       {
         DependencyService.Get<IFileService>().SaveFile(ToByteArray(file), DependencyService.Get<IFileService>().GetPathPictures());
       }
+    }
+
+    /// <summary>
+    /// Open dummy photo with default App (if defined)
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OpenPhotoButton_OnClicked(object sender, EventArgs e)
+    {
+      DependencyService.Get<IFileService>().OpenFile(Path.Combine(DependencyService.Get<IFileService>().GetPathPictures(), "Niko_01.JPG"));
     }
 
 
@@ -121,7 +131,5 @@ namespace FileStorageApp
       Debug.WriteLine($"T: {typeof(T)} Permission status: {status}");
       return status == PermissionStatus.Granted;
     }
-
-
   }
 }

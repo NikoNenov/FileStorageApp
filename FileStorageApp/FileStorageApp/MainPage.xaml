@@ -18,9 +18,14 @@
       <Button x:Name="TakePhotoButton"
               Text="Take Photo"
               Clicked="TakePhotoButton_OnClicked" />
-      <Button x:Name="PickPhotoButton"
-              Text="Pick Photo"
-              Clicked="PickPhotoButton_OnClicked" />
+      
+      <Button x:Name="PickAndSavePhotoButton"
+              Text="Pick and Save Photo"
+              Clicked="PickAndSavePhotoButton_OnClicked" />
+
+      <Button x:Name="OpenPhotoButton"
+              Text="Open Photo"
+              Clicked="OpenPhotoButton_OnClicked" />
     </StackLayout>
   </StackLayout>
 
