@@ -1,5 +1,10 @@
 ﻿/*
  * Convert: https://forums.xamarin.com/discussion/45925/pcl-xamarin-forms-convert-mediafile-into-byte-array
+ *
+ * See:
+ * https://stackoverflow.com/questions/51038251/how-to-download-image-and-save-it-in-local-storage-using-xamarin-forms
+ * https://www.c-sharpcorner.com/article/local-file-storage-using-xamarin-form/
+ * https://forums.xamarin.com/discussion/84181/how-to-i-can-save-an-image
  */
 using System;
 using System.ComponentModel;
